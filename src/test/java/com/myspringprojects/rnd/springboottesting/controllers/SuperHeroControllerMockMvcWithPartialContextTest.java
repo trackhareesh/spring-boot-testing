@@ -37,8 +37,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
  */
 @AutoConfigureJsonTesters
 @WebMvcTest(SuperHeroController.class)
-@DisplayName("Spring Boot Unit Test with Spring Context populated with only the Beans relevant to the controller")
-class SuperHeroControllerMockMvcWithContextTest {
+@DisplayName("Spring Boot Unit Test with Partial Spring Context populated (with relevant beans)")
+class SuperHeroControllerMockMvcWithPartialContextTest {
 
     // Here, we can autowire the MockMvc, unlike the standalone case. In that case, we used the MockMvcBuilders
     // class to configure the MockMvc instance. Here, since we use the @WebMvcTest annotation at class level,
