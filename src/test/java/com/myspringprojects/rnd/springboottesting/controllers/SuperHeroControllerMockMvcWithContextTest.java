@@ -19,6 +19,22 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.then;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
+/**
+ * In this class, we use the @WebMvcTest instead of building the MockMvc using the MockMvcBuilders,
+ * as in the case of standalone test.
+ *
+ * The most important difference of this approach is that we didn’t need to explicitly load the
+ * surrounding logic since there is a partial Spring context in place. If we create new filters,
+ * new controller advices, or any other logic participating in the request-response process, we
+ * will get them automatically injected in our test. Therefore, we don’t need to take care of the
+ * manual configuration here. There is no fine-grain control over what to use in our test, but
+ * it’s closer to what happens in reality. When we run our application, all this stuff is
+ * there by default.
+ *
+ * This is in fact a minimal integration test, as we depend on the loaded Spring Context, instead
+ * of selectively specifying the Filters and ControllerAdvice classes to be used.
+ *
+ */
 @AutoConfigureJsonTesters
 @WebMvcTest(SuperHeroController.class)
 @DisplayName("Spring Boot Unit Test with Spring Context populated with only the Beans relevant to the controller")
